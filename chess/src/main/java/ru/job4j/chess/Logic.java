@@ -2,6 +2,8 @@ package ru.job4j.chess;
 
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.firuges.black.BishopBlack;
+
 import java.util.Arrays;
 
 public final class Logic {
@@ -21,6 +23,13 @@ public final class Logic {
     }
 
     private boolean free(Cell[] steps) throws OccupiedCellException {
+            for (Cell c : steps) {
+                for (Figure f : figures) {
+                    if (c != null && f != null && c.equals(f.position())) {
+                        throw new OccupiedCellException("Cell is occupied by another Figure.");
+                    }
+                }
+            }
         return true;
     }
 
@@ -38,4 +47,6 @@ public final class Logic {
         }
         throw new FigureNotFoundException("Figure not found on the board.");
     }
+
+
 }
