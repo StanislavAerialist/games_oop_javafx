@@ -2,6 +2,7 @@ package ru.job4j.chess.firuges.black;
 
 import org.junit.jupiter.api.Test;
 import ru.job4j.chess.firuges.Cell;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -24,7 +25,7 @@ class BishopBlackTest {
     void whenWayBishopC1toG5() {
         BishopBlack bishopBlack = new BishopBlack(Cell.C1);
         Cell[] way = bishopBlack.way(Cell.G5);
-        Cell[] exp = new Cell[]{Cell.D2, Cell.E3, Cell.D4, Cell.G5};
-        assertThat(way.equals(exp));
+        Cell[] exp = new Cell[]{Cell.D2, Cell.E3, Cell.F4, Cell.G5};
+        assertThat(way).hasSameElementsAs(List.of(exp));
     }
 }

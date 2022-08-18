@@ -34,4 +34,16 @@ public class LogicTest {
         });
         assertThat(exception.getMessage()).isEqualTo("Cell is occupied by another Figure.");
     }
+
+    @Test
+    public void whenMoveThenImpossibleMoveException()
+            throws FigureNotFoundException, OccupiedCellException, ImpossibleMoveException {
+        Logic logic = new Logic();
+        BishopBlack bishopBlack = new BishopBlack(Cell.A3);
+        logic.add(bishopBlack);
+        ImpossibleMoveException exception = assertThrows(ImpossibleMoveException.class, () -> {
+            logic.move(Cell.A3, Cell.C6);
+        });
+        assertThat(exception.getMessage()).isEqualTo("Could not move by diagonal from A3 to C6");
+    }
 }
